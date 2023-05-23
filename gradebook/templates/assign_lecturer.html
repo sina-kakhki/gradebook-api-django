@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assign Lecturer
+{% endblock %}
+
+{% block content %}
+  <h1>Assign Lecturer</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Assign Lecturer</button>
+  </form>
+  <a href="{% url 'class_detail' class.id %}" class="btn btn-secondary">Cancel</a>
+{% endblock %}

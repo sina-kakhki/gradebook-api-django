@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-3 col-sm-6">
+                <h2 class="mb-3">Login</h2>
+                <form method="post" action="{% url 'login' %}?next={{ request.GET.next|default:'/' }}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required><br>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required><br>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                </form>
+                <p class="text-center">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

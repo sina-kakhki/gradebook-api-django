@@ -1,0 +1,54 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <!-- User is logged in -->
+  {% if user.groups.all.0.name == 'admin' %}
+    <!-- Admin dashboard options -->
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>You are logged in as an admin.</p>
+    <p>Choose an option:</p>
+    <ul>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <li><a href="{% url 'semester_list' %}">View Semesters</a></li>
+      <li><a href="{% url 'course_list' %}">View Courses</a></li>
+      <li><a href="{% url 'class_list' %}">View Classes</a></li>
+      <li><a href="{% url 'lecturer_list' %}">View Lecturers</a></li>
+      <li><a href="{% url 'student_list' %}">View Students</a></li>
+{#      <li><a href="{% url 'assign_class' %}">Assign Lecturer to a Class</a></li>#}
+      <!-- Other admin-specific options -->
+    </ul>
+  {% elif user.groups.all.0.name == 'student'  %}
+    <!-- Student dashboard options -->
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>You are logged in as a student.</p>
+    <p>Choose an option:</p>
+    <ul>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <li><a href="{% url 'student_grades' %}">View Grades</a></li>
+      <!-- Other student-specific options -->
+    </ul>
+  {% elif user.groups.all.0.name == 'lecturer' %}
+    <!-- Lecturer dashboard options -->
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>You are logged in as a lecturer.</p>
+    <p>Choose an option:</p>
+    <ul>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <li><a href="{% url 'student_grades' %}">Add Grades for students</a></li>
+      <!-- Other lecturer-specific options -->
+    </ul>
+  <!-- User has no groups -->
+  {% elif user.groups.all|length == 0 %}
+      <h1>Welcome, {{ user.username }}!</h1>
+      <p>You are logged in as a user without an assigned group.</p>
+      <p>Please ask the admin to assign you to either the lecturer user group or the student user group.</p>
+  {% endif %}
+{% else %}
+  <!-- User is not logged in -->
+  <h1>Welcome to Gradebook!</h1>
+  <p>This is the homepage of the Gradebook app.</p>
+  <p>Please log in to access the features.</p>
+{% endif %}
+{% endblock %}

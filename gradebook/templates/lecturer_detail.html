@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Lecturer Detail
+{% endblock %}
+
+{% block content %}
+  <h1>Lecturer Detail</h1>
+  <p><strong>Staff ID:</strong> {{ lecturer.staffID }}</p>
+  <p><strong>First Name:</strong> {{ lecturer.firstName }}</p>
+  <p><strong>Last Name:</strong> {{ lecturer.lastName }}</p>
+  <p><strong>Email:</strong> {{ lecturer.email }}</p>
+  <p><strong>Date of Birth:</strong> {{ lecturer.DOB }}</p>
+
+  <a href="{% url 'lecturer_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- HTML form for creating a course -->
+{% extends 'base.html' %}
+<form method="post">
+  {% csrf_token %}
+  <!-- Input fields for course details -->
+  <label for="code">Code:</label>
+  <input type="text" id="code" name="code" required><br>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br>
+
+  <!-- Submit button -->
+  <button type="submit">Create Course</button>
+</form>

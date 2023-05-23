@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Assign Lecturer to Class
+{% endblock %}
+
+{% block content %}
+    <h1>Assign Lecturer to Class</h1>
+
+    <form method="POST" action="{% url 'assign_class' class_id %}">
+        {% csrf_token %}
+        <label for="lecturer">Select Lecturer:</label>
+        <select name="lecturer" id="lecturer">
+            {% for lecturer in lecturers %}
+                <option value="{{ lecturer.id }}">{{ lecturer.full_name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Assign Lecturer">
+    </form>
+{% endblock %}

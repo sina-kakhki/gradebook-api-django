@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Class Detail
+{% endblock %}
+
+{% block content %}
+  <h1>Class Detail</h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Number:</th>
+        <td>{{ class_obj.number }}</td>
+      </tr>
+      <tr>
+        <th>Semester:</th>
+        <td>{{ class_obj.semester }}</td>
+      </tr>
+      <tr>
+        <th>Course:</th>
+        <td>{{ class_obj.course }}</td>
+      </tr>
+      <tr>
+        <th>Lecturer:</th>
+        <td>{{ class_obj.lecturer }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="{% url 'class_list' %}" class="btn btn-secondary">Back to Class List</a>
+  <a href="{% url 'update_class' class_obj.id %}" class="btn btn-primary">Edit Class</a>
+  <a href="{% url 'delete_class' class_obj.id %}" class="btn btn-danger">Delete Class</a>
+{% endblock %}

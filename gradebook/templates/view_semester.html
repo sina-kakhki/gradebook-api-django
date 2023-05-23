@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}View Semester{% endblock %}
+
+{% block content %}
+  <h1>Semester Details</h1>
+
+  <h2>{{ semester.name }}</h2>
+  <p>Start Date: {{ semester.start_date }}</p>
+  <p>End Date: {{ semester.end_date }}</p>
+
+  <h2>Courses</h2>
+  <ul>
+    {% for course in semester.courses.all %}
+      <li>{{ course.name }}</li>
+    {% empty %}
+      <li>No courses available</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Classes</h2>
+  <ul>
+    {% for class_obj in semester.classes.all %}
+      <li>{{ class_obj.number }}</li>
+    {% empty %}
+      <li>No classes available</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'update_semester' semester.id %}">Update Semester</a>
+  <a href="{% url 'delete_semester' semester.id %}">Delete Semester</a>
+{% endblock %}

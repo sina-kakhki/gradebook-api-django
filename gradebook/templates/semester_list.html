@@ -1,0 +1,7 @@
+<!-- Display the list of semesters -->
+{% extends 'base.html' %}
+<ul>
+  {% for semester in semesters %}
+    <li>{{ semester.year }} - {{ semester.semester }}</li>
+  {% endfor %}
+</ul>

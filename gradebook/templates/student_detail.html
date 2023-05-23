@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Student Detail
+{% endblock %}
+
+{% block content %}
+  <h1>Student Detail</h1>
+  <table class="table">
+    <tr>
+      <th>Student ID:</th>
+      <td>{{ student.studentID }}</td>
+    </tr>
+    <tr>
+      <th>First Name:</th>
+      <td>{{ student.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Last Name:</th>
+      <td>{{ student.lastName }}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{ student.email }}</td>
+    </tr>
+    <tr>
+      <th>Date of Birth:</th>
+      <td>{{ student.DOB }}</td>
+    </tr>
+  </table>
+  <a href="{% url 'student_list' %}" class="btn btn-secondary">Back to Student List</a>
+{% endblock %}

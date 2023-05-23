@@ -1,0 +1,16 @@
+<!-- HTML template for viewing a class -->
+{% extends 'base.html' %}
+<h1>Class Details</h1>
+<p>Number: {{ class_obj.number }}</p>
+<p>Semester: {{ class_obj.semester }}</p>
+<p>Course: {{ class_obj.course }}</p>
+<p>Lecturer: {{ class_obj.lecturer }}</p>
+
+<h2>Students</h2>
+<ul>
+  {% for student in class_obj.students.all %}
+    <li>{{ student }}</li>
+  {% empty %}
+    <li>No students enrolled</li>
+  {% endfor %}
+</ul>

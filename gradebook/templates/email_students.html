@@ -1,0 +1,14 @@
+<!-- HTML form for emailing students about their grades -->
+{% extends 'base.html' %}
+<form method="post">
+  {% csrf_token %}
+  <!-- Input fields for email details -->
+  <label for="subject">Subject:</label>
+  <input type="text" id="subject" name="subject" required><br>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" required></textarea><br>
+
+  <!-- Submit button -->
+  <button type="submit">Send Email</button>
+</form>

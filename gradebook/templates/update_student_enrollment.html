@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Student Enrollment
+{% endblock %}
+
+{% block content %}
+  <h1>Update Student Enrollment</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Update Enrollment</button>
+    <a href="{% url 'view_student_enrollment' enrollment.pk %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

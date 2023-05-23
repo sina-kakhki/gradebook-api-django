@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Course Details
+{% endblock %}
+
+{% block content %}
+  <h1>Course Details</h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Code:</th>
+        <td>{{ course.code }}</td>
+      </tr>
+      <tr>
+        <th>Name:</th>
+        <td>{{ course.name }}</td>
+      </tr>
+      <!-- Add more course details as needed -->
+    </tbody>
+  </table>
+
+  <a href="{% url 'update_course' course.id %}" class="btn btn-primary">Edit</a>
+  <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a>
+  <a href="{% url 'course_list' %}" class="btn btn-secondary">Back to Course List</a>
+{% endblock %}

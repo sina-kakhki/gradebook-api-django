@@ -1,0 +1,14 @@
+<!-- HTML form for creating a semester -->
+{% extends 'base.html' %}
+<form method="post">
+  {% csrf_token %}
+  <!-- Input fields for semester details -->
+  <label for="year">Year:</label>
+  <input type="text" id="year" name="year" required><br>
+
+  <label for="semester">Semester:</label>
+  <input type="text" id="semester" name="semester" required><br>
+
+  <!-- Submit button -->
+  <button type="submit">Create Semester</button>
+</form>

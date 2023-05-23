@@ -1,0 +1,7 @@
+<!-- Display the list of classes -->
+{% extends 'base.html' %}
+<ul>
+  {% for class in classes %}
+    <li>{{ class.number }} - {{ class.semester }} - {{ class.course }} - {{ class.lecturer }}</li>
+  {% endfor %}
+</ul>

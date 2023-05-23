@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Semester{% endblock %}
+
+{% block content %}
+  <h1>Update Semester</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Submit button -->
+    <button type="submit">Update Semester</button>
+    <a href="{% url 'view_semester' semester.id %}">Cancel</a>
+  </form>
+{% endblock %}

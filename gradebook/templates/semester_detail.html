@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Semester Details</h2>
+  <table>
+    <tr>
+      <th>Year:</th>
+      <td>{{ semester.year }}</td>
+    </tr>
+    <tr>
+      <th>Semester:</th>
+      <td>{{ semester.semester }}</td>
+    </tr>
+  </table>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!-- HTML form for creating a student enrollment -->
+{% extends 'base.html' %}
+<form method="post">
+  {% csrf_token %}
+  <!-- Input fields for enrollment details -->
+  <label for="studentID">Student ID:</label>
+  <input type="text" id="studentID" name="studentID" required><br>
+
+  <label for="classID">Class ID:</label>
+  <input type="text" id="classID" name="classID" required><br>
+
+  <label for="grade">Grade:</label>
+  <input type="text" id="grade" name="grade" required><br>
+
+  <label for="enrolTime">Enrollment Time:</label>
+  <input type="datetime-local" id="enrolTime" name="enrolTime" required><br>
+
+  <label for="gradeTime">Grade Time:</label>
+  <input type="datetime-local" id="gradeTime" name="gradeTime" required><br>
+
+  <!-- Submit button -->
+  <button type="submit">Enroll Student</button>
+</form>
