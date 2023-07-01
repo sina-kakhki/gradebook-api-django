@@ -1,38 +1,18 @@
-from rest_framework import serializers
-from .models import *
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import viewsets
+from rest_framework.authtoken.views import obtain_auth_token
 
 
-class SemesterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Semester
-        fields = '__all__'
+# Create a router and register the viewsets
+router = DefaultRouter()
+router.register(r'semesters', viewsets.SemesterViewSet)
+router.register(r'courses', viewsets.CourseViewSet)
 
-
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = '__all__'
-
-
-class LecturerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Lecturer
-        fields = '__all__'
-
-
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = '__all__'
-
-
-class ClassSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Class
-        fields = '__all__'
-
-
-class StudentEnrollmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StudentEnrollment
-        fields = '__all__'
+urlpatterns = [
+    # Other URL patterns
+    path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('auth/', obtain_auth_token),
+]
