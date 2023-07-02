@@ -57,7 +57,7 @@ class StudentEnrollmentViewSet(viewsets.ModelViewSet):
     queryset = StudentEnrollment.objects.all()
     serializer_class = StudentEnrollmentSerializer
     # Apply permissions for administrator functions
-    permission_classes = [IsLecturer, IsStudent, IsAdminUser]
+    permission_classes = [IsLecturerUser, IsStudentUser, IsAdminUser]
 
 
 class MarkViewSet(viewsets.ModelViewSet):
@@ -65,10 +65,17 @@ class MarkViewSet(viewsets.ModelViewSet):
     serializer_class = StudentEnrollmentSerializer
 
     def get_permissions(self):
-        if self.action == 'create' or self.action == 'update' or self.action == 'destroy':
-            # Apply permissions for lecturer to enter students' marks
+        user = self.request.user
+
+        if user.groups.filter(name='Lecturer').exists():
+            # Apply permissions for lecturers
             permission_classes = [IsLecturerUser]
-        else:
-            # Apply permissions for students to view their marks
+        elif user.groups.filter(name='Student').exists():
+            # Apply permissions for students
             permission_classes = [IsStudentUser]
+        else:
+            # Apply default permissions for other user roles (e.g., administrators)
+            permission_classes = [IsAdminUser]
+
         return [permission() for permission in permission_classes]
+

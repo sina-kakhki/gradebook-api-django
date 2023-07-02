@@ -1,4 +1,4 @@
-from gradebook.models import *
+from gradebook_app.models import *
 from django.contrib import admin
 
 # Register your models here.
