@@ -1,9 +1,34 @@
 from rest_framework.parsers import MultiPartParser
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from gradebook_app.models import *
 import pandas as pd
 from django.db import transaction
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+
+from .serializers import LecturerSerializer, StudentSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+class LecturerLoginView(ObtainAuthToken):
+    serializer_class = LecturerSerializer
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        lecturer = token.user.lecturer
+        return Response({'token': token.key, 'lecturer_id': lecturer.pk})
+
+
+class StudentLoginView(ObtainAuthToken):
+    serializer_class = StudentSerializer
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        student = token.user.student
+        return Response({'token': token.key, 'student_id': student.pk})
 
 
 class StudentUploadView(APIView):

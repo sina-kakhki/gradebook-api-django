@@ -1,9 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework.urlpatterns import format_suffix_patterns
-
-from gradebook_app import views
-from gradebook_app.viewsets import *
+from gradebook_app import views, viewsets
+from .viewsets import SemesterViewSet, CourseViewSet, LecturerViewSet, StudentViewSet, ClassViewSet, \
+    StudentEnrollmentViewSet, MarkViewSet
 
 router = DefaultRouter()
 router.register("semester", SemesterViewSet)
@@ -19,8 +18,8 @@ urlpatterns = [
 
     path('', include(router.urls)),
 
-    path('auth/lecturer/', LecturerLoginView, name='lecturer_login'),
-    path('auth/student/', StudentLoginView, name='student_login'),
+    path('auth/lecturer/', views.LecturerLoginView.as_view(), name='lecturer_login'),
+    path('auth/student/', views.StudentLoginView.as_view(), name='student_login'),
 
     # Administrator URLs
     path('semesters/', viewsets.SemesterViewSet.as_view({'get': 'list', 'post': 'create'}), name='semester-list'),
@@ -47,5 +46,3 @@ urlpatterns = [
     # URL for uploading students from an Excel file
     path('students/upload/', views.StudentUploadView.as_view(), name='student-upload'),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)

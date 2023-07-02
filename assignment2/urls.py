@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('gradebook_app.urls')),
     path('auth/', obtain_auth_token),
+    path('', include('gradebook_app.urls')),
 ]
